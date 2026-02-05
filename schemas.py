@@ -47,7 +47,7 @@ class PostBase(BaseModel):
 
 
 class PostCreate(PostBase):
-    user_id : int  #TEMPORARY 
+    pass 
 
 class PostUpdate(BaseModel):
     title: str = Field(default=None, min_length=1, max_length=100)
