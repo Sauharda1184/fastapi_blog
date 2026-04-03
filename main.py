@@ -14,16 +14,12 @@ from sqlalchemy.orm import selectinload
 
 
 import models 
-from database import Base, engine, get_db 
-
+from database import engine, get_db 
 from routers import posts, users 
 from config import settings 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: create database tables
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
     yield
     # Shutdown: optional cleanup can be done here
     await engine.dispose()

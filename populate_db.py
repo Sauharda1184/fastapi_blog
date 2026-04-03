@@ -6,7 +6,7 @@ import httpx
 from sqlalchemy import delete, select, update
 
 import models
-from database import AsyncSessionLocal, engine, Base
+from database import AsyncSessionLocal, engine
 from image_utils import PROFILE_PICS_DIR
 from main import app
 
@@ -282,13 +282,7 @@ async def update_post_dates() -> None:
     print("Updated post dates")
 
 
-async def ensure_tables_exist() -> None:
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
-
 async def populate() -> None:
-    await ensure_tables_exist()
     transport = httpx.ASGITransport(app=app)
 
     async with httpx.AsyncClient(
