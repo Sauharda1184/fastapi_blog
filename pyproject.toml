@@ -19,3 +19,9 @@ dependencies = [
     "sqlalchemy>=2.0.45",
     "starlette>=0.50.0",
 ]
+
+[dependency-groups]
+dev = [
+    "moto[s3]>=5.1.22",
+    "pytest>=9.0.3",
+]
